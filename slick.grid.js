@@ -609,7 +609,7 @@ if (typeof Slick === "undefined") {
         e.metaKey = e.metaKey || e.ctrlKey;
 
         if ($(e.target).hasClass("slick-resizable-handle")) {
-          return;
+          return false;
         }
 
         var $col = $(e.target).closest(".slick-header-column");
