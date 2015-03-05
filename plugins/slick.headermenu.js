@@ -218,14 +218,16 @@
         }
 
         $("<span class='slick-header-menucontent'></span>")
-          .text(item.title)
+          .html(item.title)
           .appendTo($li);
       }
+
+        var menuWidth = $(".slick-header-menucontent").width()/2
 
 
       // Position the menu.
       $menu
-        .offset({ top: $(this).offset().top + $(this).height(), left: $(this).offset().left });
+        .offset({ top: $(this).offset().top + $(this).height(), left: $(this).offset().left - menuWidth + 12 });
 
 
       // Mark the header as active to keep the highlighting.

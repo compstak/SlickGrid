@@ -16,7 +16,7 @@
       columnId: "_checkbox_selector",
       cssClass: null,
       toolTip: "Select/Deselect All",
-      width: 30
+      width: 50
     };
 
     var _options = $.extend(true, {}, _defaults, options);
@@ -52,7 +52,7 @@
       _grid.render();
 
       if (selectedRows.length && selectedRows.length == _grid.getDataLength()) {
-        _grid.updateColumnHeader(_options.columnId, "<input type='checkbox' checked='checked'>", _options.toolTip);
+        _grid.updateColumnHeader(_options.columnId, "<input type='checkbox'  checked='checked'>", _options.toolTip);
       } else {
         _grid.updateColumnHeader(_options.columnId, "<input type='checkbox'>", _options.toolTip);
       }
@@ -136,6 +136,7 @@
 
     function checkboxSelectionFormatter(row, cell, value, columnDef, dataContext) {
       if (dataContext) {
+          // TODO COMPSTAK - Changed checkbox for to add styles to it.
         return _selectedRowsLookup[row]
             ? "<input type='checkbox' class='checkbox' id='" + row + "' checked='checked'><label class='row_select_label' for='" + row + "'></label>"
             : "<input type='checkbox' class='checkbox' id='" + row + "'><label class='row_select_label' for='" + row + "'></label>";

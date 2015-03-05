@@ -576,7 +576,7 @@ if (typeof Slick === "undefined") {
 
         if (m.sortable) {
           header.addClass("slick-header-sortable");
-          header.append("<span class='slick-sort-indicator' />");
+            header.append("<span class='slick-sort-indicator' />");
         }
 
         trigger(self.onHeaderCellRendered, {
@@ -608,7 +608,8 @@ if (typeof Slick === "undefined") {
         // temporary workaround for a bug in jQuery 1.7.1 (http://bugs.jquery.com/ticket/11328)
         e.metaKey = e.metaKey || e.ctrlKey;
 
-        if ($(e.target).hasClass("slick-resizable-handle")) {
+        // TODO - Compstak, better check for preventing sorting when resizing columns
+        if ($(e.target).hasClass("slick-resizable-handle") || $(e.target).hasClass("slick-header-menubutton")) {
           return false;
         }
 
@@ -729,6 +730,9 @@ if (typeof Slick === "undefined") {
         $("<div class='slick-resizable-handle' />")
             .appendTo(e)
             .bind("dragstart", function (e, dd) {
+
+              //TODO CompStak - remove header overflow to show guide line while resizing
+              $headerScroller.addClass('column-resizing');
               if (!getEditorLock().commitCurrentEdit()) {
                 return false;
               }
@@ -859,6 +863,8 @@ if (typeof Slick === "undefined") {
             })
             .bind("dragend", function (e, dd) {
               var newWidth;
+              //TODO CompStak - add header overflow back, after resizing is done
+              $headerScroller.removeClass('column-resizing');
               $(this).parent().removeClass("slick-header-column-active");
               for (j = 0; j < columnElements.length; j++) {
                 c = columns[j];
