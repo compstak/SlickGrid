@@ -206,6 +206,10 @@
           $li.attr("title", item.tooltip);
         }
 
+        if (item.cssClass) {
+          $li.addClass(item.cssClass);
+        }
+
         var $icon = $("<div class='slick-header-menuicon'></div>")
           .appendTo($li);
 
